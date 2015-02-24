@@ -1,5 +1,10 @@
 <?php
-           
+/**
+ * @link https://github.com/sensa-ua/yii2-softdelete
+ * @copyright Copyright (c) 2015 Oleg Pshenychnyi
+ * @license http://opensource.org/licenses/BSD-3-Clause
+ */
+    
     namespace common\behaviors;
 
     use yii\db\ActiveRecord;
@@ -7,17 +12,11 @@
     use yii\base\ModelEvent;
 
     /**
-    * SoftDeleteBehavior automatically aborts row hard deletion in order to perform soft deletion (attribute change)
-    * 
-    * Note that `$model->delete()` will **always** return false, when this behavior is attached to model.
-    * 
-    * If you want to hard delete row you ought to call
-    * ```php
-    * $model->deleteHard();
-    * ```
-    * Which will trigger standard validation chain and perform row deletion.
-    * 
-    * @author Tomasz Romik <manetamajster@gmail.com>
+    * SoftDeleteBehavior implements pattern of soft deletion based on attribute change.
+    * It provide both options - softDelete and softRestore as well as isDeleted 
+    * It expose Before/After_Soft_Delete/Restore events same way like ActiveRecord does
+    * It also secure data consistency with Transaction mechanizm
+    * @author OlegPshenychnyi <op@sensa.com.ua>
     */
     class SoftDelete extends \yii\base\Behavior
     {
